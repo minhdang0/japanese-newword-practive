@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luyện từ vựng tiếng Nhật</title>
+    <link rel="stylesheet" href="./assets/css/index.css" />
+  </head>
+  <body>
+    <header>
+      <div class="jp-title">日本語クイズ</div>
+      <div class="vi-title">Luyện từ vựng tiếng Nhật</div>
+    </header>
+
+    <div class="stats-bar">
+      <div class="stat-pill correct">
+        <div class="num" id="statCorrect">0</div>
+        <div class="lbl">Đúng</div>
+      </div>
+      <div class="stat-pill wrong">
+        <div class="num" id="statWrong">0</div>
+        <div class="lbl">Sai</div>
+      </div>
+      <div class="stat-pill total">
+        <div class="num" id="statTotal">0</div>
+        <div class="lbl">Đã học</div>
+      </div>
+      <div class="stat-pill streak">
+        <div class="num" id="statStreak">0</div>
+        <div class="lbl">🔥 Streak</div>
+      </div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+    </div>
+
+    <div class="mode-tabs">
+      <button class="tab-btn active" onclick="setMode('mc')">
+        Trắc nghiệm
+      </button>
+      <button class="tab-btn" onclick="setMode('type')">Nhập đáp án</button>
+      <button class="tab-btn" onclick="setMode('flash')">Flashcard</button>
+    </div>
+
+    <div class="dir-toggle">
+      <button class="dir-btn active" onclick="setDir('jp2vi')">
+        🇯🇵 → 🇻🇳 Nhật→Việt
+      </button>
+      <button class="dir-btn" onclick="setDir('vi2jp')">
+        🇻🇳 → 🇯🇵 Việt→Nhật
+      </button>
+    </div>
+
+    <!-- QUIZ CARD -->
+    <div class="card" id="quizCard">
+      <span class="question-num" id="qNum">1 / 80</span>
+      <div class="card-hint" id="cardHint">Từ tiếng Nhật</div>
+      <div class="jp-word" id="jpWord">—</div>
+      <div class="kanji-sub" id="kanjiSub"></div>
+      <div class="card-divider"></div>
+      <div class="flash-answer" id="flashAnswer"></div>
+    </div>
+
+    <!-- MC OPTIONS -->
+    <div class="options-grid" id="optionsGrid"></div>
+
+    <!-- TYPE INPUT -->
+    <div class="type-input-wrap" id="typeWrap" style="display: none">
+      <input
+        class="type-input"
+        id="typeInput"
+        placeholder="Nhập nghĩa tiếng Việt..."
+        autocomplete="off"
+      />
+      <button class="submit-btn" onclick="submitType()">OK</button>
+    </div>
+
+    <!-- FLASHCARD BUTTONS -->
+    <button
+      class="reveal-btn"
+      id="revealBtn"
+      style="display: none"
+      onclick="revealFlash()"
+    >
+      👁 Hiện đáp án
+    </button>
+    <div class="flash-btns" id="flashBtns">
+      <button class="flash-dunno" onclick="flashAnswer(false)">
+        ❌ Chưa nhớ
+      </button>
+      <button class="flash-know" onclick="flashAnswer(true)">✅ Đã nhớ</button>
+    </div>
+
+    <!-- FEEDBACK -->
+    <div class="feedback-bar" id="feedbackBar">
+      <span class="feedback-icon" id="feedbackIcon"></span>
+      <span id="feedbackText"></span>
+    </div>
+
+    <!-- NEXT -->
+    <button class="next-btn" id="nextBtn" onclick="nextQuestion()">
+      Câu tiếp theo →
+    </button>
+
+    <!-- FINISH SCREEN -->
+    <div class="finish-screen" id="finishScreen">
+      <div class="finish-big" id="finishEmoji">🎌</div>
+      <div class="finish-title">Hoàn thành vòng luyện!</div>
+      <div class="finish-score" id="finishScore"></div>
+      <div class="finish-sub" id="finishSub"></div>
+      <button class="restart-btn" onclick="restart()">Làm lại từ đầu</button>
+    </div>
+
+    <div class="wrong-list" id="wrongList"></div>
+
+    <script src="/js/index.js"></script>
+  </body>
+</html>
